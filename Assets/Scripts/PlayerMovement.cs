@@ -13,11 +13,11 @@ public class PlayerMovement : MonoBehaviour
     public float gravityMult = 4f;
     public float airAccel = 0.1f;
     public float airTimeLimit = 2f;
-    public int jumpFrameDelay = 5;
+    public float jumpSecondDelay = 0.12f;
 
-    private Rigidbody rigidbody;
+    new private Rigidbody rigidbody;
     private bool isGrounded = true;
-    private int jumpDelay = 0;
+    private float jumpClock = 0;
     private float airTime = 0;
 
     // Start is called before the first frame update
@@ -34,40 +34,48 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Vector3 final = new Vector3(rigidbody.velocity.x, rigidbody.velocity.y, rigidbody.velocity.z);
-        jumpDelay--;
+        // Create a new vector with the velocity of the previous frame.
+        Vector3 final = rigidbody.velocity;
 
-
-
+        //If the player is on the ground, multiply the X and Z velocity by a number less than 1 to slow them down over time.
         if(isGrounded){
             final = new Vector3(rigidbody.velocity.x * floorVelocityDampening, rigidbody.velocity.y, rigidbody.velocity.z * floorVelocityDampening);
         }
         
+        //If the player's previous velocity isn't higher than the speed limit and the player is on the floor, move based on the input.
         if ((final.magnitude <= maxFloorVelocity) && isGrounded)
         {
             final += Input.GetAxis("Vertical") * transform.forward * acceleration;
             final += Input.GetAxis("Horizontal") * transform.right * acceleration;
         }
+
+        // Unused air control code.
+
         // else if ((final.magnitude <= maxAirVelocity) && airTime > 0)
         // {
         //     final += Input.GetAxis("Vertical") * transform.forward * (airAccel * airTime + 1);
         //     final += Input.GetAxis("Horizontal") * transform.right * (airAccel * airTime );    
         // }
 
-        airTime -= Time.deltaTime;
+        // airTime -= Time.deltaTime;
 
-        final += Vector3.down * gravityMult * Time.deltaTime;
-        rigidbody.velocity = final;
+        
+        final += Vector3.down * gravityMult * Time.deltaTime; //Add extra gravity (multiply the "down" direction by gravity multiplier)
+        rigidbody.velocity = final;                           //Set the velocity to the processed output.
 
-        if (Input.GetButton("Jump") && isGrounded && (jumpDelay <= 0))
+        //Decrement the clock in real time by how long the previous frame took to render.
+        jumpClock -= Time.deltaTime;
+
+        //If we press the jump button, the player is on the ground, and the jump timer is already reset, add a physics impulse (jump!).
+        if (Input.GetButton("Jump") && isGrounded && (jumpClock <= 0))
         {
             rigidbody.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
-            jumpDelay = jumpFrameDelay;
+            jumpClock = jumpSecondDelay; //Reset the delay after a jump
         }
         else
-        {
+        {   //If one of the above isn't true, check if the ground is actually below the player.
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, Vector3.down, out hit, 2.1f))
+            if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.3f))
             {
                 if (hit.collider.enabled){
                     isGrounded = true;
