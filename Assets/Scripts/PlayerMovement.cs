@@ -55,7 +55,6 @@ public class PlayerMovement : MonoBehaviour
         // }
 
         airTime -= Time.deltaTime;
-        Debug.Log(airTime);
 
         final += Vector3.down * gravityMult * Time.deltaTime;
         rigidbody.velocity = final;
@@ -68,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f))
+            if (Physics.Raycast(transform.position, Vector3.down, out hit, 2.1f))
             {
                 if (hit.collider.enabled){
                     isGrounded = true;
