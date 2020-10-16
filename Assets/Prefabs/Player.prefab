@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6680651009713182915}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6680651011237947230}
@@ -99,7 +99,7 @@ MonoBehaviour:
   clampInDegrees: {x: 360, y: 180}
   lockCursor: 1
   sensitivity: {x: 1, y: 1}
-  smoothing: {x: 0, y: 0}
+  smoothing: {x: 1, y: 1}
   targetDirection: {x: 0, y: 0}
   targetCharacterDirection: {x: 0, y: 0}
   characterBody: {fileID: 6680651011237947229}
@@ -207,6 +207,7 @@ GameObject:
   - component: {fileID: 6680651011237947230}
   - component: {fileID: 6680651011237947231}
   - component: {fileID: 6680651011237947228}
+  - component: {fileID: 2076726444}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -260,3 +261,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &2076726444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6680651011237947229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a77f24455af5904c896805749f9a59d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acceleration: 8
+  maxFloorVelocity: 35
+  maxAirVelocity: 10
+  floorVelocityDampening: 0.7
+  jumpPower: 10
+  gravityMult: 8
+  airAccel: 2
+  airTimeLimit: 2
+  jumpFrameDelay: 10
