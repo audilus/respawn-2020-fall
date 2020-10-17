@@ -45,8 +45,8 @@ public class PlayerMovement : MonoBehaviour
         //If the player's previous velocity isn't higher than the speed limit and the player is on the floor, move based on the input.
         if ((final.magnitude <= maxFloorVelocity) && isGrounded)
         {
-            final += Input.GetAxis("Vertical") * transform.forward * acceleration;
-            final += Input.GetAxis("Horizontal") * transform.right * acceleration;
+            final += Input.GetAxisRaw("Vertical") * transform.forward * acceleration;
+            final += Input.GetAxisRaw("Horizontal") * transform.right * acceleration;
         }
 
         // Unused air control code.
