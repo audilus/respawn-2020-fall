@@ -23,7 +23,6 @@ public class GrappleTarget : MonoBehaviour
     {
         
         isActive = m_renderer.isVisible;
-        Debug.Log(isActive);
         if(isActive){
             activeGrappleTargets.Add(this);
         }

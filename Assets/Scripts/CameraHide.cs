@@ -9,12 +9,14 @@ public class CameraHide : MonoBehaviour
     private MeshRenderer meshRenderer;
     new private Collider collider;
     private Collider playerCollider;
+    private CamRaycast camRaycast;
     
     void Awake()
     {
         //Iniitalize these variables when the program starts.
         collider = GetComponent<Collider>();
         meshRenderer = GetComponent<MeshRenderer>();
+        camRaycast = FindObjectOfType<CamRaycast>();
     }
 
     void Start(){
@@ -33,7 +35,7 @@ public class CameraHide : MonoBehaviour
         else
         {
             //If the renderer isn't visible within the camera view, make the collider a trigger.
-            collider.isTrigger = !meshRenderer.isVisible;
+            collider.isTrigger = !meshRenderer.isVisible || !camRaycast.invalid.Contains(collider);
         }
     }
 }

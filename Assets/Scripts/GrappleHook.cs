@@ -10,6 +10,8 @@ public class GrappleHook : MonoBehaviour
     private GrappleTarget gTarget;
     private ConfigurableJoint joint;
     private GameObject player;
+    private SoftJointLimit s = new SoftJointLimit();
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -37,13 +39,17 @@ public class GrappleHook : MonoBehaviour
                         joint = player.gameObject.AddComponent<ConfigurableJoint>();
                         joint.connectedBody = gTarget.GetComponent<Rigidbody>();
                         joint.autoConfigureConnectedAnchor = false;
-                        joint.connectedAnchor = gTarget.transform.position;
                         joint.xMotion = ConfigurableJointMotion.Limited;
                         joint.yMotion = ConfigurableJointMotion.Limited;
                         joint.zMotion = ConfigurableJointMotion.Limited;
-                        SoftJointLimit s = new SoftJointLimit();
-                        s.limit = 20f;
+                        s.limit = 30f;
+                        s.contactDistance = 2f;
+
                         joint.linearLimit = s;
+                        joint.anchor = player.gameObject.transform.position;
+                        joint.connectedAnchor = gTarget.transform.localPosition;
+
+                        
                         //joint.connectedAnchor = gTarget.gameObject.transform.position;
                     }
                 }
@@ -52,8 +58,8 @@ public class GrappleHook : MonoBehaviour
         }
         
         if(joint != null && gTarget != null){
-            joint.anchor = gTarget.gameObject.transform.position;
-            joint.connectedAnchor = gTarget.gameObject.transform.position;
+            // joint.anchor = player.gameObject.transform.localPosition;
+            // joint.connectedAnchor = gTarget.transform.localPosition;
         }
 
 
