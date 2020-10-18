@@ -129,20 +129,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1698765333, guid: 96c156782835e9b4597e8e615c2a1b6b, type: 3}
-      propertyPath: antialiasingMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6680651009713182927, guid: 96c156782835e9b4597e8e615c2a1b6b,
-        type: 3}
-      propertyPath: field of view
-      value: 55.700634
-      objectReference: {fileID: 0}
-    - target: {fileID: 6680651009713182927, guid: 96c156782835e9b4597e8e615c2a1b6b,
-        type: 3}
-      propertyPath: m_RenderingPath
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6680651011237947229, guid: 96c156782835e9b4597e8e615c2a1b6b,
         type: 3}
       propertyPath: m_Name
