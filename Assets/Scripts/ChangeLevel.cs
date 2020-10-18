@@ -12,7 +12,6 @@ public class ChangeLevel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -24,6 +23,6 @@ public class ChangeLevel : MonoBehaviour
 
     public void changeLevel(string lvl)
     {
-        SceneManager.LoadScene(nextLevel, LoadSceneMode.Single);
+        SceneManager.LoadScene(lvl, LoadSceneMode.Single);
     }
 }
