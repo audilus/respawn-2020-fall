@@ -1,18 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class JumpPad : MonoBehaviour
+public class ChangeLevel : MonoBehaviour
 {
-    internal float JumpPower = 50f;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         
-    }
-
-    private void OnTriggerEnter(Collider c){
-        c.attachedRigidbody.AddForce( (transform.up + transform.forward) * JumpPower, ForceMode.VelocityChange);
     }
 
     // Update is called once per frame

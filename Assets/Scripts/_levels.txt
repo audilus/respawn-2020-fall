@@ -1,0 +1,7 @@
+1 - Get to the end.
+2 - Hit the switch to activate the end. It's only active if you're looking at it.
+    - start the player looking at the switch, the path to the exit will collapse.
+3 - Jump pads, get across the gap.
+    - players die if they hit the abyss.
+4 - 
+5 - Get to the end, but through the white wall.
