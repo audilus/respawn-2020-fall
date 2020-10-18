@@ -7,7 +7,7 @@ public class Switch : MonoBehaviour
     public Activator activator;
     private CamRaycast camRaycast;
     private MeshRenderer meshRenderer;
-    public bool requireFullVision = false;
+    public bool checkForObscurance = false;
     new private Collider collider;
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,7 @@ public class Switch : MonoBehaviour
     {
 
         if (meshRenderer.isVisible && !camRaycast.invalid.Contains(collider)){
-            if (requireFullVision)
+            if (checkForObscurance)
             {
                 RaycastHit hit;
                 if (Physics.Raycast(Camera.main.transform.position, (this.transform.position - Camera.main.transform.position).normalized, out hit))
