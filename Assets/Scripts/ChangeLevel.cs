@@ -6,17 +6,19 @@ using UnityEngine.SceneManagement;
 public class ChangeLevel : MonoBehaviour
 {
 
-
+    public string nextLevel;
+    private Collider collider;
 
     // Start is called before the first frame update
     void Start()
     {
         
     }
-
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.tag == "Player")
+        {
+            SceneManager.LoadScene(nextLevel, LoadSceneMode.Single);
+        }
     }
 }
