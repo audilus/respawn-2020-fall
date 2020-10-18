@@ -543,3 +543,5 @@ MonoBehaviour:
   airAccel: 2
   airTimeLimit: 2
   jumpSecondDelay: 1
+  shakeAmt: 5
+  shakeThreshold: 20

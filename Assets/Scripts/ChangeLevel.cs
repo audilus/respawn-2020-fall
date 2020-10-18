@@ -21,4 +21,9 @@ public class ChangeLevel : MonoBehaviour
             SceneManager.LoadScene(nextLevel, LoadSceneMode.Single);
         }
     }
+
+    public void changeLevel(string lvl)
+    {
+        SceneManager.LoadScene(nextLevel, LoadSceneMode.Single);
+    }
 }
