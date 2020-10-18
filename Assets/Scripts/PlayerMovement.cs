@@ -15,6 +15,9 @@ public class PlayerMovement : MonoBehaviour
     public float airTimeLimit = 2f;
     public float jumpSecondDelay = 0.12f;
 
+    public float shakeAmt;
+    public float shakeThreshold = 25f;
+
     new private Rigidbody rigidbody;
     private bool isGrounded = true;
     private float jumpClock = 0;
@@ -37,15 +40,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (rigidbody.velocity.magnitude > 40f)
+        if (rigidbody.velocity.magnitude > shakeThreshold)
         {
-            //shakeClock = 20;
+            shakeClock = shakeAmt;
         }
     }
 
     void Update()
     {
-        cameraShake.Shake(Mathf.Max(0, shakeClock -= Mathf.Pow(Time.deltaTime, 2)));
+        cameraShake.Shake(Mathf.Max(0, shakeClock -= Time.deltaTime * shakeAmt * 15));
         // Create a new vector with the velocity of the previous frame.
         Vector3 final = rigidbody.velocity;
 
