@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class JumpPad : MonoBehaviour
 {
-    internal float JumpPower = 50f;
+    public float JumpPower = 50f;
     // Start is called before the first frame update
     void Start()
     {

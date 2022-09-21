@@ -39,6 +39,7 @@ public class CamRaycast : MonoBehaviour
 
         }
         rays.Clear();
+
         
     }
 }

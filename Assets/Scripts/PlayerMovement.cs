@@ -15,15 +15,21 @@ public class PlayerMovement : MonoBehaviour
     public float airTimeLimit = 2f;
     public float jumpSecondDelay = 0.12f;
 
+    public float shakeAmt;
+    public float shakeThreshold = 25f;
+
     new private Rigidbody rigidbody;
     private bool isGrounded = true;
     private float jumpClock = 0;
     private float airTime = 0;
+    private float shakeClock = 0;
+    private CameraShake cameraShake;
 
     // Start is called before the first frame update
     void Start()
     {
         rigidbody = this.GetComponent<Rigidbody>();
+        cameraShake = GetComponentInChildren<CameraShake>();
     }
 
     // Fixed update is called every physics tick (locked at 60Hz), so I don't need to multiply by time.deltatime here
@@ -32,8 +38,17 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (rigidbody.velocity.magnitude > shakeThreshold)
+        {
+            shakeClock = shakeAmt;
+        }
+    }
+
     void Update()
     {
+        cameraShake.Shake(Mathf.Max(0, shakeClock -= Time.deltaTime * shakeAmt * 15));
         // Create a new vector with the velocity of the previous frame.
         Vector3 final = rigidbody.velocity;
 
